@@ -1,7 +1,7 @@
 public class Topping {
-    private String name;
-    private String type; // "meat", "cheese", "regular", "sauce"
-    private boolean isExtra;
+    private final String name;
+    private final String type; // "meat", "cheese", "regular", "sauce"
+    private final boolean isExtra;
 
     public Topping(String name, String type, boolean isExtra) {
         this.name = name;
@@ -45,5 +45,16 @@ public class Topping {
     @Override
     public String toString() {
         return name + (isExtra ? " (extra)" : "");
+    }
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public boolean isExtra() {
+        return isExtra;
     }
 }
