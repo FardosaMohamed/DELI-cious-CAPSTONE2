@@ -20,6 +20,9 @@ public class Sandwich {
     public void addTopping(Topping topping) {
         toppings.add(topping);
     }
+    public void removeTopping(String name) {
+        toppings.removeIf(t -> t.getName().equalsIgnoreCase(name));
+    }
 
     public double calculatePrice() {
         double basePrice = SandwichOptions.SIZE_PRICE_MAP.get(size);
