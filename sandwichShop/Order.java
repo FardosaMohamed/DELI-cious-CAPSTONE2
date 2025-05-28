@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class Order {
 
-    private List<Sandwich> sandwiches = new ArrayList<>();
-    private List<String> chips = new ArrayList<>();
-    private Map<String, Integer> drinks = new HashMap<>(); // Drink size → quantity
+    private final List<Sandwich> sandwiches = new ArrayList<>();
+    private final List<String> chips = new ArrayList<>();
+    private final Map<String, Integer> drinks = new HashMap<>(); // Drink size → quantity
 
     public void addSandwich(Sandwich s) {
         sandwiches.add(s);
