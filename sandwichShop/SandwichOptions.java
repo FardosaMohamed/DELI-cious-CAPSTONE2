@@ -15,7 +15,7 @@ public class SandwichOptions {
     public static final List<String> REGULAR_TOPPINGS = List.of("Lettuce", "Peppers", "Onions", "Tomatoes", "Jalapeños", "Cucumbers", "Pickles", "Guacamole", "Mushrooms");
     public static final List<String> SAUCES = List.of("Mayo", "Mustard", "Ketchup", "Ranch", "Thousand Islands", "Vinaigrette");
 
-    public static final Map<String, Double> CHIP_PRICES = Map.of("Regular", 1.50);
+    public static final double CHIP_PRICE = 1.50;
     public static final Map<String, Double> DRINK_PRICES = Map.of(
             "Small", 2.00,
             "Medium", 2.50,

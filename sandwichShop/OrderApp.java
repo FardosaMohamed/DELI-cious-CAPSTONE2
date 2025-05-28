@@ -33,10 +33,12 @@ public class OrderApp {
 
                         switch (orderChoice) {
                             case "1" -> {
+
                                 System.out.println("\n🥪 Choose your sandwich type:");
                                 System.out.println("1️⃣  Build Your Own");
                                 System.out.println("2️⃣  Signature: BLT");
                                 System.out.println("3️⃣  Signature: Philly Cheese Steak");
+                                System.out.println("4️⃣  Go Back to Order Menu");
                                 System.out.print("👉 Enter choice: ");
                                 String sandwichType = scanner.nextLine().toLowerCase();
 
@@ -53,13 +55,17 @@ public class OrderApp {
                                         sandwich = new PhillyCheeseSteak();
                                         System.out.println("✅ Philly Cheese Steak added! 🧀🥩🌶️");
                                     }
+                                    case "4" -> {
+                                        System.out.println("🔙 Returning to Order Menu...");
+                                        continue; // skip the rest of the loop
+                                    }
                                     default -> {
                                         System.out.println("⚠️ Invalid option. Defaulting to custom builder.");
                                         sandwich = buildSandwich(scanner);
                                     }
                                 }
 
-                                System.out.print("🛠️ Would you like to customize toppings? (yes/no): ");
+                                System.out.print("\n🛠️ Would you like to customize toppings? (yes/no): ");
                                 if (scanner.nextLine().equalsIgnoreCase("yes")) {
                                     customizeSandwich(scanner, sandwich);
                                 }
@@ -125,11 +131,35 @@ public class OrderApp {
     private static Sandwich buildSandwich(Scanner scanner) {
         System.out.println("\n👉 Let's build your sandwich!");
 
-        System.out.print("📏 Enter sandwich size (4, 8, 12): ");
-        int size = Integer.parseInt(scanner.nextLine());
+        int size;
+        while (true) {
+            System.out.print("📏 Enter sandwich size (4, 8, 12): ");
+            try {
+                size = Integer.parseInt(scanner.nextLine());
+                if (SandwichOptions.SIZE_PRICE_MAP.containsKey(size)) {
+                    break; // valid input
+                } else {
+                    System.out.println("⚠️ Invalid size. Please choose 4, 8, or 12.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Please enter a number (4, 8, or 12).");
+            }
+        }
 
-        System.out.print("🍞 Enter bread type (White, Wheat, Rye, Wrap): ");
-        String bread = scanner.nextLine();
+        String bread = "";
+        while (true) {
+            System.out.print("🍞 Enter bread type (White, Wheat, Rye, Wrap): ");
+            bread = scanner.nextLine().trim();
+
+            // Normalize case: Capitalize first letter, lowercase the rest
+            bread = bread.substring(0, 1).toUpperCase() + bread.substring(1).toLowerCase();
+
+            if (SandwichOptions.BREAD_TYPES.contains(bread)) {
+                break; // valid input
+            } else {
+                System.out.println("⚠️ Invalid bread type. Please choose from White, Wheat, Rye, or Wrap.");
+            }
+        }
 
         System.out.print("🔥 Toasted? (yes/no): ");
         boolean toasted = scanner.nextLine().equalsIgnoreCase("yes");
@@ -140,7 +170,7 @@ public class OrderApp {
         int count = Integer.parseInt(scanner.nextLine());
 
         for (int i = 0; i < count; i++) {
-            System.out.println("🥗 Topping #" + (i + 1));
+            System.out.println("\n🥗 Topping #" + (i + 1));
             System.out.print("🔤 Topping name: ");
             String name = scanner.nextLine();
 

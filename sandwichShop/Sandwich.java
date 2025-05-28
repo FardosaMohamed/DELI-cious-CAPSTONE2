@@ -36,12 +36,30 @@ public class Sandwich {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(size).append("\" ").append(typeOfBread).append(isToasted ? " (Toasted)" : " (Not Toasted)").append("\n");
+        sb.append(size).append("\" ").append(typeOfBread)
+                .append(isToasted ? " (Toasted)\n" : " (Not Toasted)\n");
+
         sb.append("Toppings:\n");
+
+        double toppingTotal = 0.0;
         for (Topping topping : toppings) {
-            sb.append("  - ").append(topping).append("\n");
+            double cost = topping.getCost(size);
+            toppingTotal += cost;
+
+            sb.append(String.format("  - %-20s (%s%s): $%.2f\n",
+                    topping.getName(),
+                    topping.getType(),
+                    topping.isExtra() ? ", extra" : "",
+                    cost));
         }
-        sb.append("Price: $").append(String.format("%.2f", calculatePrice()));
+
+        double basePrice = SandwichOptions.SIZE_PRICE_MAP.get(size);
+        double total = basePrice + toppingTotal;
+
+        sb.append(String.format("Base Price:               $%.2f\n", basePrice));
+        sb.append(String.format("Topping Total:            $%.2f\n", toppingTotal));
+        sb.append(String.format("Sandwich Total:           $%.2f", total));
+
         return sb.toString();
     }
 
