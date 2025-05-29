@@ -7,9 +7,10 @@ public class OrderApp {
 
         while (running) {
             // 🍞 Home Screen
-            System.out.println("\n╔═══════════════════════════════╗");
-            System.out.println("║  🥪 Welcome to DELI-cious! 🥪   ");
-            System.out.println("╚═══════════════════════════════╝");
+            System.out.println("╔════════════════════════════════════════════╗");
+            System.out.println("   ║    🧀  WELCOME TO DELI-cious!  🥪    ║");
+            System.out.println("║  Home of Custom Sandwiches, Chips & More!  ║");
+            System.out.println("╚════════════════════════════════════════════╝");
             System.out.println("1️⃣  New Order");
             System.out.println("0️⃣  Exit");
             System.out.print("👉 Enter your choice: ");
